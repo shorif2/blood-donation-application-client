@@ -5,6 +5,9 @@ import Featured from "./Featured/Featured";
 
 
 const Home = () => {
+
+    const email = 'email'
+    console.log(email);
     return (
         <div>
           <Banner></Banner>

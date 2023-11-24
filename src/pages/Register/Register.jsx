@@ -1,7 +1,10 @@
 // import toast from "react-hot-toast";
 // import { NavLink, useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
 import Container from "../../components/Shared/Container";
+import { AuthContext } from "../../provider/AuthProvider";
+
 
 // import { NavLink } from "react-router-dom";
 
@@ -10,7 +13,7 @@ const Register = () => {
 
     // const navigate = useNavigate();
 
-    // const {createUser, updateUser} = useContext(AuthContext)
+    const {createUser} = useContext(AuthContext)
 
     const handleSignUp =(e) =>{
 
@@ -23,7 +26,7 @@ const Register = () => {
         const bloodGroup = e.target.bloodGroup.value;
         const district = e.target.district.value;
         const upazila = e.target.upazila.value;
-
+        createUser(email, password)
 
         const userInfo = {name, email, password, confirmPassword,avatar, bloodGroup, district, upazila}
 
