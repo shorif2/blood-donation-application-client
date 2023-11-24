@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
 
 
@@ -22,14 +23,15 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal gap-4">
-                    <li>Home</li>
+                <Link to='/'>Home</Link>
+                    
                     <li>Dashboard</li>
                     <li>Blog</li>
                     <li>Register</li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Login</a>
+                <Link to='/login' className="btn btn-outline" >Login</Link>
             </div>
         </div>
         </Container>

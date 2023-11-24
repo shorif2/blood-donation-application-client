@@ -8,7 +8,10 @@ const Footer = () => {
             
         
             <div className="flex justify-between pt-10">
+                <div className="flex flex-col justify-center items-center">
                 <img className="w-12" src="/public/blood.png" alt="" />
+                <h2 className="text-white">OneBlood</h2>
+                </div>
                 <div className="flex gap-10 items-center">
                     <p className="text-white text-xl">
                     Ready to get started?
