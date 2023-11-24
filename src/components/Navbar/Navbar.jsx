@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 
 const Navbar = () => {
+    const {user, logout} = useContext(AuthContext)
+    
+    
+
+
     return (
         <Container>
             <div className="navbar bg-base-100">
@@ -26,12 +33,25 @@ const Navbar = () => {
                 <Link to='/'>Home</Link>
                     
                     <li>Dashboard</li>
-                    <li>Blog</li>
-                    <Link to='/register'>Register</Link>
+                    <Link to='/blog'>Blog</Link>
+                    {user?
+                    <></>:
+                    <><Link to='/register'>Register</Link></>}
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login' className="btn btn-outline" >Login</Link>
+                {
+                    user?
+                    <>
+                    <button onClick={()=>logout()}  className="btn btn-outline">Logout</button>
+                    <div className="pl-4">
+                    <img className="w-12 h-12 rounded-full  border border-red-500" src="" alt="" />
+                    </div>
+                    </>:
+                    <>
+                    <Link to='/login' className="btn btn-outline" >Login</Link>
+                    </>
+                }
             </div>
         </div>
         </Container>

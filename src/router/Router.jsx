@@ -5,6 +5,8 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Blog from "../pages/Blog/Blog";
+import PrivetRouter from "./PrivetRouter";
 
 
   const router = createBrowserRouter([
@@ -23,6 +25,10 @@ import Register from "../pages/Register/Register";
         {
           path: "/register",
           element: <Register></Register>
+        },
+        {
+          path: "/blog",
+          element: <PrivetRouter><Blog></Blog></PrivetRouter>
         }
       ]
     },
