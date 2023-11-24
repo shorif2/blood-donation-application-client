@@ -1,5 +1,7 @@
-import toast from "react-hot-toast";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+// import toast from "react-hot-toast";
+// import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 
 
 const Login = () => {
@@ -34,7 +36,7 @@ const Login = () => {
 //         .then((error)=>{
 //             toast.error(`${error.massage}`)
 //         })
- //   }
+//    }
     return (
         <div>
            
@@ -60,7 +62,7 @@ const Login = () => {
                   
               </form>
               <div className="">
-              <NavLink to='/sign-up' className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <NavLink to='/register' className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Already have an account? <span href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Create an account</span>
                   </NavLink>
               </div>

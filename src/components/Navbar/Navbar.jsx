@@ -27,7 +27,7 @@ const Navbar = () => {
                     
                     <li>Dashboard</li>
                     <li>Blog</li>
-                    <li>Register</li>
+                    <Link to='/register'>Register</Link>
                 </ul>
             </div>
             <div className="navbar-end">
