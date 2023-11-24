@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 
 const Navbar = () => {
-    const {user, logout} = useContext(AuthContext)
-    
-    
+    const {user, logout} = useAuth()
 
-
+    console.log(user);
     return (
         <Container>
             <div className="navbar bg-base-100">
@@ -45,7 +42,9 @@ const Navbar = () => {
                     <>
                     <button onClick={()=>logout()}  className="btn btn-outline">Logout</button>
                     <div className="pl-4">
-                    <img className="w-12 h-12 rounded-full  border border-red-500" src="" alt="" />
+                    <div className="w-12 h-12 rounded-full  border border-red-500" >
+                    <p>{user.displayName}</p>
+                    </div>
                     </div>
                     </>:
                     <>

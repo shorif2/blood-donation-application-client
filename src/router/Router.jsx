@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Blog from "../pages/Blog/Blog";
 import PrivetRouter from "./PrivetRouter";
+import Dashboard from "../layout/Dashboard";
 
 
   const router = createBrowserRouter([
@@ -32,6 +33,16 @@ import PrivetRouter from "./PrivetRouter";
         }
       ]
     },
+    {
+      path: 'dashboard',
+      element: <Dashboard></Dashboard>,
+      children:[
+        {
+          path: 'donation',
+        element:'nothing'
+        }
+      ]
+    }
   ]);
 
 

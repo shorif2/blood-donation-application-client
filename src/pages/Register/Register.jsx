@@ -4,16 +4,20 @@
 import { useContext } from "react";
 import Container from "../../components/Shared/Container";
 import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 // import { NavLink } from "react-router-dom";
 
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic()
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    const {createUser} = useContext(AuthContext)
+    const {createUser, updateUser} = useContext(AuthContext)
 
     const handleSignUp =(e) =>{
 
@@ -26,11 +30,39 @@ const Register = () => {
         const bloodGroup = e.target.bloodGroup.value;
         const district = e.target.district.value;
         const upazila = e.target.upazila.value;
+        const url = 'https://as2.ftcdn.net/v2/jpg/00/51/19/87/1000_F_51198797_gSMOe1hNvokAOvwWeJlON2GVVaAilmEI.jpg'
+
+
+
         createUser(email, password)
+        .then(result => {
+            
+            updateUser(result.user,name, url)
+            // create user info in the database
+            const userInfo = {
+                name: name,
+                email: email,
+                avatar: url,
+                bloodGroup: bloodGroup,
+                district: district,
+                upazila: upazila,
+                role: "Donar"
+            }
+            axiosPublic.post('/users', userInfo)
+                .then(res =>{
+                    if(res.data.insertedId){
+                        console.log(userInfo);
+                        toast.success('Account register successfully!')
+                        navigate('/')
+                    }
+                })
+           
+        })
+       
 
-        const userInfo = {name, email, password, confirmPassword,avatar, bloodGroup, district, upazila}
+        // const userInfo = {name, email, password, confirmPassword,avatar, bloodGroup, district, upazila}
 
-        console.log(userInfo);
+        // console.log(userInfo);
 
         // createUser(email, password)
         // .then(userCredential=>{
