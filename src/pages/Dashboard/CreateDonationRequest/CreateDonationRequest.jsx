@@ -1,9 +1,11 @@
+import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 const CreateDonationRequest = () => {
 
     const axiosPublic = useAxiosPublic()
+    
 
 
     const handleSubmit = (e)=>{
@@ -38,12 +40,12 @@ const CreateDonationRequest = () => {
         console.log(donationRequest);
 
         axiosPublic.post('/donation-requests', donationRequest)
-        .then(result => {
-            console.log(result);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+                .then(res =>{
+                    if(res.data.insertedId){
+                        console.log(res);
+                        toast.success('Donation Requests Created Successfully !!')
+                    }
+                })
 
 
     }
@@ -87,7 +89,7 @@ const CreateDonationRequest = () => {
                     {/*  */}
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 ">Recipient Upazila</label>
-                        <select name="recipientUpazila" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2    ">
+                        <select name="recipientUpazila" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2">
                             <option defaultValue="">Select Upazila</option>
                             <option value="Offline Home Service">Offline Home Service</option>
                             <option value="Rider Service">Rider Service</option>

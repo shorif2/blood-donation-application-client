@@ -11,6 +11,9 @@ import Dashboard from "../layout/Dashboard";
 import DashHome from "../pages/Dashboard/DashHome/DashHome";
 import MyDonationRequests from "../pages/Dashboard/MyDonationRequests/MyDonationRequests";
 import CreateDonationRequest from "../pages/Dashboard/CreateDonationRequest/CreateDonationRequest";
+import AllUser from "../pages/Dashboard/Admin/AllUser";
+import ContentManagement from "../pages/Dashboard/Admin/ContentManagement";
+import AddBlog from "../pages/Dashboard/Admin/AddBlog";
 
 
   const router = createBrowserRouter([
@@ -51,6 +54,18 @@ import CreateDonationRequest from "../pages/Dashboard/CreateDonationRequest/Crea
         {
         path: '/dashboard/create-donation-request',
         element: <CreateDonationRequest></CreateDonationRequest>
+        },
+        {
+          path: '/dashboard/all-users',
+          element: <AllUser></AllUser>
+        },
+        {
+          path: '/dashboard/content-management',
+          element: <ContentManagement></ContentManagement>
+        },
+        {
+          path: '/dashboard/content-management/add-blog',
+          element: <AddBlog></AddBlog>
         }
       ]
     }

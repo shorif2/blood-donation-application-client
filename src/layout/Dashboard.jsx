@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import Container from "../components/Shared/Container";
 
 
-import { HouseLine, HandHeart, FolderSimplePlus, User, CaretDown, Bell } from "@phosphor-icons/react";
+import { HouseLine, HandHeart, FolderSimplePlus, User, CaretDown, Bell, Users, Notepad } from "@phosphor-icons/react";
 
 const Dashboard = () => {
     return (
@@ -37,12 +37,19 @@ const Dashboard = () => {
                 {/* Sidebar */}
                 <div className="w-1/5 min-h-screen bg-gray-200">
 
-
-
-
-
-
+                    {/* Admin Pages */}
                     <div className="flex flex-col gap-6 pt-16 px-8">
+                    <div className="flex gap-4">
+                    <Users size={28} /> <NavLink to="/dashboard/all-users">All Users</NavLink>
+                        </div>
+                    <div className="flex gap-4">
+                    <Notepad size={28} /> <NavLink to="/dashboard/content-management">Content Management</NavLink>
+                        </div>
+                    </div>
+
+
+                    {/* Donar Pages */}
+                    <div className="flex flex-col gap-6 pt-6 px-8">
                         <div className="flex gap-4">
                             <HouseLine size={28} /> <NavLink to="/dashboard">Dashboard </NavLink>
                         </div>
