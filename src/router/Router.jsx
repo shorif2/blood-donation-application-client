@@ -8,6 +8,9 @@ import Register from "../pages/Register/Register";
 import Blog from "../pages/Blog/Blog";
 import PrivetRouter from "./PrivetRouter";
 import Dashboard from "../layout/Dashboard";
+import DashHome from "../pages/Dashboard/DashHome/DashHome";
+import MyDonationRequests from "../pages/Dashboard/MyDonationRequests/MyDonationRequests";
+import CreateDonationRequest from "../pages/Dashboard/CreateDonationRequest/CreateDonationRequest";
 
 
   const router = createBrowserRouter([
@@ -38,8 +41,16 @@ import Dashboard from "../layout/Dashboard";
       element: <Dashboard></Dashboard>,
       children:[
         {
-          path: 'donation',
-        element:'nothing'
+          path:'/dashboard',
+          element: <DashHome></DashHome>
+        },
+        {
+        path: '/dashboard/my-donation-requests',
+        element: <MyDonationRequests></MyDonationRequests>
+        },
+        {
+        path: '/dashboard/create-donation-request',
+        element: <CreateDonationRequest></CreateDonationRequest>
         }
       ]
     }

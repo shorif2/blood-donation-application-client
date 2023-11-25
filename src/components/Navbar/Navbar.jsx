@@ -29,7 +29,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal gap-4">
                 <Link to='/'>Home</Link>
                     
-                    <li>Dashboard</li>
+                <Link to='/dashboard'>Dashboard</Link>
                     <Link to='/blog'>Blog</Link>
                     {user?
                     <></>:
