@@ -13,7 +13,6 @@ const AuthProvider = ({ children }) => {
     const axiosPublic = useAxiosPublic();
 
 
-    console.log(user);
     useEffect(() => {
         // Observer 
         const observerRequest = onAuthStateChanged(auth, (newUser) => {

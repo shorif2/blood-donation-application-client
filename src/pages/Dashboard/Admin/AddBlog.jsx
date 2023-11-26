@@ -5,7 +5,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const AddBlog = () => {
 
-    const axiousPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
 
     const editor = useRef(null)
     const [content, setContent] = useState('')
@@ -19,6 +19,14 @@ const AddBlog = () => {
         const blog ={title, thumbnail, description}
 
         console.log(blog);
+
+        axiosPublic.post('/blogs', blog)
+        .then(result =>{
+            console.log(result);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
 
     }
 

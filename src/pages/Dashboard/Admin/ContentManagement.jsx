@@ -25,7 +25,7 @@ const ContentManagement = () => {
                             <option value="Published">Published</option>
                         </select>
             </div>
-            <div className="bg-white ">
+            <div className="bg-white">
             <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
