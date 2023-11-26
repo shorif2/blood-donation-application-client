@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
 import useAuth from "../../hooks/useAuth";
+import useDonation from "../../hooks/useDonation";
 
 
 const Navbar = () => {
     const {user, logout} = useAuth()
+    const allRequests = useDonation()
 
-    console.log(user);
+    console.log(allRequests);
     return (
         <Container>
             <div className="navbar bg-base-100">

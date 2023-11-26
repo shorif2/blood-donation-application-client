@@ -1,132 +1,83 @@
+
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Cube, Eye, Pencil, Trash } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
+import Table from "./components/Table";
+
+
 
 
 const AllDonationRequest = () => {
+	const axiosSecure = useAxiosSecure();
+	const [filterData, setFilterData] = useState('');
+	const [request, setRequest] = useState([])
 
-    return (
-        <div>
-            <h2 className="text-2xl font-semibold">
-            All Blood Donation Request
-            </h2>
+	useEffect(() => {
+		axiosSecure.get(`/donation-requests`)
+			.then(result => {
+				setRequest(result.data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	}, [axiosSecure])
 
-            <div className="bg-white mt-6 rounded">
-            <div className="container p-2 mx-auto sm:p-4 ">
-	<div className="overflow-x-auto">
-		<table className="min-w-full text-xs">
-			<thead className="dark:bg-gray-700">
-				<tr className="text-left">
-					<th className="p-3">Avatar</th>
-					<th className="p-3">Email</th>
-					<th className="p-3">Name</th>
-					<th className="p-3">Status</th>
-					<th className="p-3 text-right">Role</th>
-					<th className="p-3 text-center">Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-					<td className="p-3">
-						<p>97412378923</p>
-					</td>
-					<td className="p-3">
-						<p>Microsoft Corporation</p>
-					</td>
-					<td className="p-3">
-						<p>14 Jan 2022</p>
-						<p className="dark:text-gray-400">Friday</p>
-					</td>
-					<td className="p-3">
-						<p>01 Feb 2022</p>
-						<p className="dark:text-gray-400">Tuesday</p>
-					</td>
-					<td className="p-3 text-right">
-						<p>$15,792</p>
-					</td>
-					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md bg-red-500">
-							<span>Pending</span>
-						</span>
-					</td>
-				</tr>
-				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-					<td className="p-3">
-						<p>97412378923</p>
-					</td>
-					<td className="p-3">
-						<p>Tesla Inc.</p>
-					</td>
-					<td className="p-3">
-						<p>14 Jan 2022</p>
-						<p className="dark:text-gray-400">Friday</p>
-					</td>
-					<td className="p-3">
-						<p>01 Feb 2022</p>
-						<p className="dark:text-gray-400">Tuesday</p>
-					</td>
-					<td className="p-3 text-right">
-						<p>$275</p>
-					</td>
-					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
-					</td>
-				</tr>
-				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-					<td className="p-3">
-						<p>97412378923</p>
-					</td>
-					<td className="p-3">
-						<p>Coca Cola co.</p>
-					</td>
-					<td className="p-3">
-						<p>14 Jan 2022</p>
-						<p className="dark:text-gray-400">Friday</p>
-					</td>
-					<td className="p-3">
-						<p>01 Feb 2022</p>
-						<p className="dark:text-gray-400">Tuesday</p>
-					</td>
-					<td className="p-3 text-right">
-						<p>$8,950,500</p>
-					</td>
-					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
-					</td>
-				</tr>
-				<tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-					<td className="p-3">
-						<p>97412378923</p>
-					</td>
-					<td className="p-3">
-						<p>Nvidia Corporation</p>
-					</td>
-					<td className="p-3">
-						<p>14 Jan 2022</p>
-						<p className="dark:text-gray-400">Friday</p>
-					</td>
-					<td className="p-3">
-						<p>01 Feb 2022</p>
-						<p className="dark:text-gray-400">Tuesday</p>
-					</td>
-					<td className="p-3 text-right">
-						<p>$98,218</p>
-					</td>
-					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<span>Pending</span>
-						</span>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-            </div>
-        </div>
-    );
+	const handleChange = async (e) => {
+		e.preventDefault()
+		const temp = e.target.value
+
+		setFilterData(temp);
+
+		await axiosSecure.get(`/donation-requests/${temp}`)
+			.then(result => {
+				setRequest(result.data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
+	}
+	console.log(request);
+
+	return (
+		<div>
+			<div className="flex justify-between">
+				<h2 className="text-2xl font-semibold">
+					All Blood Donation Request
+				</h2>
+
+				<select onChange={handleChange} name="filter" className="bg-gray-50 border border-gray-300  rounded block p-2">
+					<option defaultValue="">All Request</option>
+					<option value="Pending">Pending</option>
+					<option value="Inprogress">Inprogress</option>
+					<option value="Done">Done</option>
+					<option value="Canceled">Canceled</option>
+				</select>
+			</div>
+
+			<div className="bg-white mt-6 rounded">
+				<div className="container p-2 mx-auto sm:p-4 ">
+					<div className="overflow-x-auto">
+						<table className="min-w-full text-xs">
+							<thead className="dark:bg-gray-700">
+								<tr className="text-left">
+									<th className="p-3">Name</th>
+									<th className="p-3">Location</th>
+									<th className="p-3">Date</th>
+									<th className="p-3">Time</th>
+									<th className="p-3 text-right">donar info</th>
+									<th className="p-3 text-center">Status</th>
+									<th className="p-3 text-center">Action</th>
+								</tr>
+							</thead>
+						{request.map (req => <Table key={req._id} req={req} ></Table>)}
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default AllDonationRequest;

@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
                 localStorage.removeItem('access-token')
             }
             setLoading(false)
-            console.log(auth);
         })
         return () => observerRequest()
     }, [])
