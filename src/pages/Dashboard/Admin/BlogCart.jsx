@@ -1,17 +1,58 @@
 import { Eye, Pencil, Trash } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 
 const BlogCart = ({blog}) => {
 
+    const axiosSecure = useAxiosSecure()
     const {_id, title, thumbnail , description, status } = blog;
 
+    const handleDelete = (id) => {
 
-
-    const handleDelete = () => {
+    axiosSecure.delete(`/blogs/${id}`)
+    .then(result => {
+        if(result.data.deletedCount > 0){
+            toast.success('Deleted Success')
+        }
+    })
+    .catch(err =>{
+        console.log(err);
+    })
     
     }
-    const handlePublish = () => {
+    const handlePublish = (id) => {
+
+        if(status === 'Draft'){
+            const updateStatus = {
+                status : "Published"
+            }
+
+            axiosSecure.put(`/blogs/${id}`, updateStatus)
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
+        }
+        else{
+                const updateStatus = {
+                    status : "Draft"
+                }
+    
+                axiosSecure.put(`/blogs/${id}`, updateStatus)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+       
+
+        }
 
     }
 
@@ -39,7 +80,7 @@ const BlogCart = ({blog}) => {
 
                             <Link to={`/blood-donation-details/${_id}`}className="hover:text-red-500"><Eye size={24} /></Link>
                         </div>
-                        <button onClick={handlePublish} className="btn btn-sm btn-outline" >Publish</button>
+                        <button onClick={()=>handlePublish(_id)} className="btn btn-sm btn-outline" >{status === 'Draft'? 'Published': 'Unpublished This Blog'}</button>
   </div>
 </div>
         </div>
