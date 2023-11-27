@@ -18,6 +18,7 @@ import AllDonationRequest from "../pages/Dashboard/Admin/AllDonationRequest";
 import UpdateDonationRequest from "../pages/Dashboard/UpdateDonationRequest";
 import BloodDonationDetails from "../pages/BloodDonationDetails/BloodDonationDetails";
 import Search from "../pages/Search/Search";
+import BlogDetails from "../pages/Blog/BlogDetails";
 
 
   const router = createBrowserRouter([
@@ -40,6 +41,10 @@ import Search from "../pages/Search/Search";
         {
           path: "/blog",
           element: <PrivetRouter><Blog></Blog></PrivetRouter>
+        },
+        {
+          path: 'blog/:id',
+          element: <BlogDetails></BlogDetails>
         },
         {
           path: '/blood-donation-details/:id',

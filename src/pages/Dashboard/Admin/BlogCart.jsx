@@ -78,7 +78,7 @@ const BlogCart = ({blog}) => {
                                 <Trash size={24} />
                             </button>
 
-                            <Link to={`/blood-donation-details/${_id}`}className="hover:text-red-500"><Eye size={24} /></Link>
+                            <Link to={`/blog/${_id}`}className="hover:text-red-500"><Eye size={24} /></Link>
                         </div>
                         <button onClick={()=>handlePublish(_id)} className="btn btn-sm btn-outline" >{status === 'Draft'? 'Published': 'Unpublished This Blog'}</button>
   </div>
