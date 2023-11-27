@@ -30,6 +30,7 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal gap-4">
                 <Link to='/'>Home</Link>
+                <Link to='/search'>Search</Link>
                     
                 <Link to='/dashboard'>Dashboard</Link>
                     <Link to='/blog'>Blog</Link>
