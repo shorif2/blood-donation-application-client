@@ -1,49 +1,80 @@
+import {  useEffect, useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import MyDonationTable from "./MyDonationTable";
 
 
 const MyDonationRequests = () => {
+  const {user} = useAuth()
+  const axiosSecure = useAxiosSecure();
+	const [request, setRequest] = useState([])
+  
 
+	useEffect( () => {
+    const email = user.email;
     
+		axiosSecure.get(`/user-donation-request/${email}`)
+			.then(result => {
+				setRequest(result.data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+      
+	}, [user, axiosSecure])
+  
+  
+
+	const handleChange = async (e) => {
+		e.preventDefault()
+    const email = user.email;
+		const temp = e.target.value
+    console.log(temp);
+    axiosSecure.get(`/user-donation-request/${email}`)
+			.then(result => {
+				setRequest(result.data);
+			})
+        const res2 = request.filter(item => item.status === temp)
+				setRequest(res2);
+        console.log(res2);
+	}
+  
     return (
         <div>
-          <h2 className="text-3xl font-semibold">
-            My Donation Request 
-            </h2>
+            <div>
+            <div className="flex justify-between">
+				<h2 className="text-2xl font-semibold">
+					My Blood Donation Request
+				</h2>
+
+				<select onChange={handleChange} name="filter" className="bg-gray-50 border border-gray-300  rounded block p-2">
+					<option defaultValue="">All Request</option>
+					<option value="Pending">Pending</option>
+					<option value="Inprogress">Inprogress</option>
+					<option value="Done">Done</option>
+					<option value="Canceled">Canceled</option>
+				</select>
+			</div>
+            </div>
 
             <div className="bg-white mt-6">
             <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
     <thead>
-      <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
+    <tr>
+									<th >Name</th>
+									<th >Location</th>
+									<th >Date</th>
+									<th >Time</th>
+									<th>donar info</th>
+									<th >Status</th>
+									<th>Action</th>
+								</tr>
     </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
+    {
+      request.map(donationRequest => <MyDonationTable key={donationRequest._id} donationRequest={donationRequest} ></MyDonationTable>)
+    }
   </table>
 </div>
             </div>

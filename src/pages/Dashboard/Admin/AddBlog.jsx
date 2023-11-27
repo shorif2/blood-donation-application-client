@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import JoditEditor from 'jodit-react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 
 const AddBlog = () => {
@@ -15,14 +16,15 @@ const AddBlog = () => {
         const title = e.target.title.value
         const thumbnail = 'https://images.pexels.com/photos/1405674/pexels-photo-1405674.jpeg'
         const description = content;
+        const status = 'Draft'
 
-        const blog ={title, thumbnail, description}
+        const blog ={title, thumbnail, description, status}
 
         console.log(blog);
 
         axiosPublic.post('/blogs', blog)
-        .then(result =>{
-            console.log(result);
+        .then(() =>{
+            toast.success('Blog Added')
         })
         .catch(error =>{
             console.log(error);

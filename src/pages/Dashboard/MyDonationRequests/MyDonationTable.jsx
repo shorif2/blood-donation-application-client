@@ -1,15 +1,15 @@
-import {  Eye, Pencil, Trash } from "@phosphor-icons/react";
-
+import { Eye, Pencil, Trash } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-// eslint-disable-next-line react/prop-types
-const Table = ({req}) => {
+
+const MyDonationTable = ({donationRequest}) => {
+
     const axiosSecure = useAxiosSecure()
 
-    // eslint-disable-next-line react/prop-types
-    const {_id, requesterName, requesterEmail, recipientName, hospitalName, recipientDistrict, recipientUpazila, fullAddress, donationDate, donationTime, message, status} = req
+    const {_id, requesterName, recipientDistrict, recipientUpazila, donationDate, donationTime, status} = donationRequest
+
 
     const handleDelete = (id)=>{
         console.log(id);
@@ -20,32 +20,30 @@ const Table = ({req}) => {
         .catch(error =>{
             console.log(error);
         })
-
     }
-
     return (
-            <tbody className="overscroll-auto">
-                <tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-                    <td className="p-3">
+        <tbody>
+                <tr >
+                    <td >
                         <p>{requesterName}</p>
                     </td>
-                    <td className="p-3">
+                    <td >
                         <p>{recipientDistrict},{recipientUpazila}</p>
                     </td>
-                    <td className="p-3">
+                    <td >
                         <p>{donationDate}</p>
                         
                     </td>
-                    <td className="p-3">
-                    <p className="dark:text-gray-400">{donationTime} PM</p>
+                    <td >
+                    <p >{donationTime} PM</p>
                     </td>
-                    <td className="p-3 text-right">
+                    <td >
                         <p>will added</p>
                     </td>
-                    <td className="p-3 text-right">
+                    <td >
                         <p>{status}</p>
                     </td>
-                    <td className="text-right">
+                    <td >
 
 
                         <div className="flex justify-center items-center gap-4">
@@ -70,4 +68,4 @@ const Table = ({req}) => {
     );
 };
 
-export default Table;
+export default MyDonationTable;

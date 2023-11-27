@@ -1,8 +1,26 @@
 import { Plus,  } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
+import BlogCart from "./blogCart";
 
 
 const ContentManagement = () => {
+
+  const axiosSecure = useAxiosSecure()
+
+  const [blogs, setBlogs] = useState();
+
+  useEffect(()=>{
+    axiosSecure.get('/blogs')
+    .then(result =>{
+      console.log(result.data);
+      setBlogs(result.data)
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }, [axiosSecure])
     return (
         <div>
             
@@ -16,7 +34,7 @@ const ContentManagement = () => {
             
             </div>
             <div className="bg-red-200 mt-10 flex justify-between items-center px-4">
-            <h2 className=" text-xl font-semibold">Total Blog is 29 </h2>
+            <h2 className=" text-xl font-semibold">Total Blog is {blogs?.length} </h2>
             {/*  */}
 
             <select name="select" className="p-2 bg-gray-50 border my-6 border-gray-300 text-sm rounded block">
@@ -25,44 +43,12 @@ const ContentManagement = () => {
                             <option value="Published">Published</option>
                         </select>
             </div>
-            <div className="bg-white">
-            <div className="overflow-x-auto">
-  <table className="table table-zebra">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+            <div className="grid grid-cols-3 pt-6 gap-6">
+              {
+                blogs?.map(blog => <BlogCart key={blog._id} blog={blog}></BlogCart>)
+              }
             </div>
+
         </div>
     );
 };
