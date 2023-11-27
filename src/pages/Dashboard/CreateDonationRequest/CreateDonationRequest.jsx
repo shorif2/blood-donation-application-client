@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAuth from "../../../hooks/useAuth";
 
 
 const CreateDonationRequest = () => {
@@ -7,6 +8,9 @@ const CreateDonationRequest = () => {
     const axiosPublic = useAxiosPublic()
     
 
+    const {user} = useAuth()
+    const {displayName, email} = user;
+    console.log(name, email, user);
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -61,11 +65,11 @@ const CreateDonationRequest = () => {
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <label  className="block mb-2 text-sm font-medium text-gray-900 ">Requester Name</label>
-                        <input type="text" name="requesterName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2" placeholder="Requester Name" required/>
+                        <input type="text" defaultValue={displayName} name="requesterName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2" placeholder="Requester Name" disabled/>
                     </div>
                     <div>
                         <label  className="block mb-2 text-sm font-medium text-gray-900 ">Requester Email</label>
-                        <input type="text" name="requesterEmail"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 " placeholder="Requester Email" required/>
+                        <input type="text" defaultValue={email} name="requesterEmail"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 " placeholder="Requester Email" disabled/>
                     </div>
                     <div>
                         <label  className="block mb-2 text-sm font-medium text-gray-900 ">Recipient Name</label>
@@ -117,8 +121,7 @@ const CreateDonationRequest = () => {
                     </div>
                 </div>
                 <button type="submit" className="bg-red-500 text-white  inline-flex items-center  font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
-                    <svg className="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" ></path></svg>
-                    Add Service
+                    Request
                 </button>
             </form>
             {/* extra form  */}

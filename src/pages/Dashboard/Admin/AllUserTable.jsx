@@ -3,7 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUserTable = ({user}) => {
     const axiosSecure = useAxiosSecure();
-    const {_id,email, name, avatar, bloodGroup, role, status } = user;
+    const {_id,email, name, avatar,  role, status } = user;
 
     const handleUpdateRole = (role)=>{
 
@@ -40,7 +40,7 @@ const AllUserTable = ({user}) => {
             })
         }
         else{
-            const  updateStatus =  { status: 'Unblock'}
+            const  updateStatus =  { status: 'Active'}
             axiosSecure.put(`/users-status/${_id}`, updateStatus)
             .then(result =>{
                 if(result.data.modifiedCount > 0){
@@ -61,7 +61,7 @@ const AllUserTable = ({user}) => {
 				<tr className="border-b border-opacity-20">
 					<td>
 					<div className="relative flex-shrink-0">
-			<span className="absolute bottom-0 left-8 w-4 h-4 bg-green-600 border rounded-full"></span>
+			<span style={{ backgroundColor: status === 'Active'? 'green': 'red' }} className="absolute bottom-0 left-8 w-4 h-4  border rounded-full"></span>
 			<img src={avatar} alt="" className="w-12 h-12 border rounded-full" />
 		</div>
 					</td>
