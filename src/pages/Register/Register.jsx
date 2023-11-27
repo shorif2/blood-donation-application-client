@@ -46,6 +46,7 @@ const Register = () => {
                 bloodGroup: bloodGroup,
                 district: district,
                 upazila: upazila,
+                status: "Active",
                 role: "Donar"
             }
             axiosPublic.post('/users', userInfo)
@@ -56,7 +57,11 @@ const Register = () => {
                         navigate('/')
                     }
                 })
+                
            
+        })
+        .catch((error) => {
+            toast.error(`${error.message}`)
         })
        
 
