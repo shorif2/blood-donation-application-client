@@ -73,7 +73,7 @@ const Dashboard = () => {
                             <HouseLine size={28} /><NavLink to="/">Return Home</NavLink>
                         </div>
                         <div className="flex gap-4">
-                            <User size={28} /><NavLink to="/">Profile</NavLink>
+                            <User size={28} /><NavLink to="/dashboard/profile">Profile</NavLink>
                         </div>
                     </div>
 

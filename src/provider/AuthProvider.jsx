@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
         })
         return () => observerRequest()
-    }, [])
+    }, [axiosPublic])
 
     // Create User
     const createUser = (email, password) => {

@@ -19,6 +19,10 @@ import UpdateDonationRequest from "../pages/Dashboard/UpdateDonationRequest";
 import BloodDonationDetails from "../pages/BloodDonationDetails/BloodDonationDetails";
 import Search from "../pages/Search/Search";
 import BlogDetails from "../pages/Blog/BlogDetails";
+import BloodRequestPage from "../pages/BloodRequestPage/BloodRequestPage";
+// import DonationRequestDetails from "../pages/DonationRequestDetails/DonationRequestDetails";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
 
 
   const router = createBrowserRouter([
@@ -53,6 +57,10 @@ import BlogDetails from "../pages/Blog/BlogDetails";
         {
           path: '/search',
           element: <Search></Search>
+        },
+        {
+          path: '/blood-donation-request',
+          element: <BloodRequestPage></BloodRequestPage>
         }
       ]
     },
@@ -92,6 +100,14 @@ import BlogDetails from "../pages/Blog/BlogDetails";
           path: '/dashboard/update-donation-request/:id',
           element: <UpdateDonationRequest></UpdateDonationRequest>
         },
+        {
+          path: '/dashboard/profile',
+          element: <Profile></Profile>
+        },
+        {
+          path: '/dashboard/update-profile/:id',
+          element: <UpdateProfile></UpdateProfile>
+        }
       ]
     }
   ]);

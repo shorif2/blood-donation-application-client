@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
 import useAuth from "../../hooks/useAuth";
-import useDonation from "../../hooks/useDonation";
 
 
 const Navbar = () => {
     const {user, logout} = useAuth()
-    const allRequests = useDonation()
-
-    console.log(allRequests);
     return (
         <Container>
             <div className="navbar bg-base-100">
@@ -31,6 +27,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal gap-4">
                 <Link to='/'>Home</Link>
                 <Link to='/search'>Search</Link>
+                <Link to='/blood-donation-request'>Blood Requests</Link>
                     
                 <Link to='/dashboard'>Dashboard</Link>
                     <Link to='/blog'>Blog</Link>

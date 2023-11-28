@@ -9,7 +9,7 @@ const Table = ({req}) => {
     const axiosSecure = useAxiosSecure()
 
     // eslint-disable-next-line react/prop-types
-    const {_id, requesterName, requesterEmail, recipientName, hospitalName, recipientDistrict, recipientUpazila, fullAddress, donationDate, donationTime, message, status} = req
+    const {_id, requesterName, requesterEmail, recipientName, hospitalName, recipientDistrict, recipientUpazila, fullAddress, donationDate, donationTime, message, status, donarInfo} = req
 
     const handleDelete = (id)=>{
         console.log(id);
@@ -40,7 +40,11 @@ const Table = ({req}) => {
                     <p className="dark:text-gray-400">{donationTime} PM</p>
                     </td>
                     <td className="p-3 text-right">
-                        <p>will added</p>
+
+                        {
+                            donarInfo? <div className="flex flex-col"><p>{donarInfo?.donarName}</p> <p>{donarInfo?.donarEmail}</p></div>: '----'
+                        }
+                    
                     </td>
                     <td className="p-3 text-right">
                         <p>{status}</p>
