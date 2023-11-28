@@ -15,7 +15,7 @@ const UpdateProfile = () => {
 
     const {user} = useAuth()
 
-    const handleSignUp =(e) =>{
+    const handleUpdateInfo =(e) =>{
 
         e.preventDefault()
         const name = e.target.name.value;
@@ -35,11 +35,11 @@ const UpdateProfile = () => {
             }
             axiosPublic.put(`/update-usersInfo/${id}`, userInfo)
                 .then(res =>{
-                    if(res.data.insertedId){
-                        console.log(userInfo);
+                   
+                        console.log(res);
                         toast.success('Info update successfully!')
-                        navigate('/dashboard/update-profile/:id')
-                    }
+                        // navigate('/dashboard/update-profile/:id')
+                   
                 })
                 .catch((error) => {
                     toast.error(`${error.message}`)
@@ -52,7 +52,7 @@ const UpdateProfile = () => {
     return (
         <div>
         <Container>
-            <form onSubmit={handleSignUp}>
+            <form onSubmit={handleUpdateInfo}>
             <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 {/* name */}
                 <div>
@@ -110,7 +110,6 @@ const UpdateProfile = () => {
                 </div>
             </div>
             <button type="submit" className="bg-red-500 text-white  inline-flex items-center  font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
-                
                 Register
             </button>
         </form>

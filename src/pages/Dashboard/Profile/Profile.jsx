@@ -15,7 +15,8 @@ const Profile = () => {
     const axiosSecure = useAxiosSecure()
 
 
-    const { _id, name, avatar, district, upazila, role, status } = myBio || '';
+    const { _id, name, avatar, district, upazila, role, status, bloodGroup
+    } = myBio || '';
 
     useEffect(() => {
 
@@ -52,7 +53,7 @@ const Profile = () => {
                         <div className="p-1 border shadow-md rounded-xl">
                             <img className="w-36 h-36  bg-gray-200 m-2" src={avatar} />
                         </div>
-                        <h2 className="pb-2 text-2xl font-semibold">Dinoy Raj K</h2>
+                        <h2 className="pb-2 text-2xl font-semibold">{name}</h2>
                     </div>
                     <div className="flex items-end gap-3">
                         <Bell size={30} />
@@ -114,6 +115,8 @@ const Profile = () => {
                         <ProfileBio text1={'Upazila'} text2={upazila}>
                         </ProfileBio>
                         <ProfileBio text1={'Role'} text2={role}>
+                        </ProfileBio>
+                        <ProfileBio text1={'Blood Group'} text2={bloodGroup}>
                         </ProfileBio>
 
                     </div>

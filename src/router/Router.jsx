@@ -23,6 +23,7 @@ import BloodRequestPage from "../pages/BloodRequestPage/BloodRequestPage";
 // import DonationRequestDetails from "../pages/DonationRequestDetails/DonationRequestDetails";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
+import Funding from "../pages/Funding/Funding";
 
 
   const router = createBrowserRouter([
@@ -61,7 +62,11 @@ import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
         {
           path: '/blood-donation-request',
           element: <BloodRequestPage></BloodRequestPage>
-        }
+        },
+        {
+          path: '/donate',
+          element: <Funding></Funding>
+        },
       ]
     },
     {

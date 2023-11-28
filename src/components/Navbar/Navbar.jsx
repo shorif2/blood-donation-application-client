@@ -31,6 +31,8 @@ const Navbar = () => {
                     
                 <Link to='/dashboard'>Dashboard</Link>
                     <Link to='/blog'>Blog</Link>
+                    <Link to='/donate'>Donate</Link>
+
                     {user?
                     <></>:
                     <><Link to='/register'>Register</Link></>}
