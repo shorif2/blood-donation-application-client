@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AllUserTable from "./AllUserTable";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 const AllUser = () => {
-	const axiosSecure = useAxiosSecure();
+	const axiosPublic = useAxiosPublic();
 	const [users, setUsers] = useState();
 
 	useEffect(() => {
-		axiosSecure.get('/users')
+		axiosPublic.get('/users')
 			.then(result => {
 				setUsers(result.data);
 			})
 			.catch(error => {
 				console.log(error);
 			})
-	}, [axiosSecure])
+	}, [axiosPublic])
 	return (
 		<div>
 			<h2 className="text-2xl font-semibold">

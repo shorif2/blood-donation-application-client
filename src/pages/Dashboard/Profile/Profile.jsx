@@ -2,36 +2,40 @@ import { Bell } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import ProfileBio from "../../../components/Profile/ProfileBio";
 import useAuth from "../../../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import useUserData from "../../../hooks/useUserData";
 
 
 const Profile = () => {
     const { user, loading } = useAuth()
     const { email } = user;
-    const [myBio, setMyBio] = useState({})
+    // const [myBio, setMyBio] = useState({})
     const axiosSecure = useAxiosSecure()
+
+    const [myBioData] = useUserData()
+    
 
 
     const { _id, name, avatar, district, upazila, role, status, bloodGroup
-    } = myBio || '';
+    } = myBioData || '';
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
-        axiosSecure.get(`/myInfo/${email}`)
-            .then(res => {
+    //     axiosSecure.get(`/myInfo/${email}`)
+    //         .then(res => {
 
-                setMyBio(res.data[0]);
+    //             setMyBio(res.data[0]);
 
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
 
-    }, [axiosSecure, email, loading])
+    // }, [axiosSecure, email, loading])
 
     const [date, setDate] = useState(new Date());
 
@@ -39,11 +43,11 @@ const Profile = () => {
     setDate(selectedDate);
   };
 
-  const calendarStyles = {
-    padding: '10px',
-    border: '1px',
-    borderRadius: '5px',
-  };
+//   const calendarStyles = {
+//     padding: '10px',
+//     border: '1px',
+//     borderRadius: '5px',
+//   };
 
     return (
         <div className="flex gap-6 w-full">

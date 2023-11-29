@@ -34,7 +34,7 @@ const AdminDash = () => {
 
 
     return (
-        <div className="w-full grid grid-cols-3 gap-6 ">
+        <div className="w-full grid grid-cols-3 gap-6 mt-6">
                 <div className="flex justify-center flex-col items-center p-10 bg-green-300 space-y-2">
                 <UsersThree  size={50} />
                 <div className="text-center">

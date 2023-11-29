@@ -4,8 +4,16 @@ import Container from "../components/Shared/Container";
 
 
 import { HouseLine, HandHeart, FolderSimplePlus, User, CaretDown, Bell, Users, Notepad, HandsPraying } from "@phosphor-icons/react";
+import useAdmin from "../hooks/useAdmin";
+import useUserData from "../hooks/useUserData";
 
 const Dashboard = () => {
+    const [admin] = useAdmin()
+
+    const [myBioData] = useUserData()
+    const { name, avatar,  role
+    } = myBioData || '';
+
     return (
         <Container>
             <div className="flex justify-between items-center">
@@ -18,15 +26,16 @@ const Dashboard = () => {
                     </Link>
                 </div>
 
+                
                 {/* profile */}
                 <div className="flex space-x-4">
                 <Bell className="mt-2" size={28} />
                     <div>
-                        <img src="https://source.unsplash.com/100x100/?portrait" alt="" className="object-cover w-12 h-12 rounded-full dark:bg-gray-500" />
+                        <img src={avatar} alt="" className="object-cover w-12 h-12 rounded-full dark:bg-gray-500" />
                     </div>
                     <div>
-                        <h4 className="font-bold">Leroy Jenkins</h4>
-                        <span className="text-xs dark:text-gray-400">Blood Donar</span>
+                        <h4 className="font-bold">{name}</h4>
+                        <span className="text-xs dark:text-gray-400">{role}</span>
                     </div>
                     <CaretDown size={24} />
                 </div>
@@ -37,8 +46,24 @@ const Dashboard = () => {
                 {/* Sidebar */}
                 <div className="w-1/5 min-h-screen bg-gray-200">
 
+                    {/* Dashboard */}
+
+                <div className="flex flex-col gap-6 pt-6 px-8">
+                        <div className="flex gap-4">
+                            <HouseLine size={28} /> <NavLink to="/dashboard">Dashboard </NavLink>
+                        </div>
+
+                        
+                    </div>
+
                     {/* Admin Pages */}
+                    
+                    {admin === true?
+                    <>
                     <div className="flex flex-col gap-6 pt-6 px-8">
+                    <div className="flex gap-4">
+                    <HandsPraying size={28} /> <NavLink to="/dashboard/all-blood-donation-request">Donation Request</NavLink>
+                        </div>
                     <div className="flex gap-4">
                     <Users size={28} /> <NavLink to="/dashboard/all-users">All Users</NavLink>
                         </div>
@@ -46,18 +71,12 @@ const Dashboard = () => {
                     <Notepad size={28} /> <NavLink to="/dashboard/content-management">Content Management</NavLink>
                         </div>
                         {/* all blood donation request */}
-                    <div className="flex gap-4">
-                    <HandsPraying size={28} /> <NavLink to="/dashboard/all-blood-donation-request">Donation Request</NavLink>
-                        </div>
+                    
                     </div>
-
-
-                    {/* Donar Pages */}
+                    </>:
+                    
+                    <>
                     <div className="flex flex-col gap-6 pt-6 px-8">
-                        <div className="flex gap-4">
-                            <HouseLine size={28} /> <NavLink to="/dashboard">Dashboard </NavLink>
-                        </div>
-
                         {/* My Donation Requests */}
                         <div className="flex gap-4">
                             <HandHeart size={28} /><NavLink to="/dashboard/my-donation-requests">My Donation Requests</NavLink>
@@ -67,6 +86,13 @@ const Dashboard = () => {
                             <FolderSimplePlus size={28} /><NavLink to="/dashboard/create-donation-request">Create Donation Request</NavLink>
                         </div>
                     </div>
+                    </>
+                    }
+                    
+
+
+                    {/* Donar Pages */}
+                    
 
                     <div className="absolute bottom-10 px-8">
                         <div className="flex gap-4">

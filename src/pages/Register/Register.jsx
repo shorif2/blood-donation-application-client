@@ -7,12 +7,15 @@ import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useState } from "react";
+import Register2 from "./Register2";
 
 
 // import { NavLink } from "react-router-dom";
 
 
 const Register = () => {
+    const [selectedImage, setSelectedImage] = useState(null);
     const axiosPublic = useAxiosPublic()
 
     const navigate = useNavigate();
@@ -25,14 +28,29 @@ const Register = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const confirmPassword = e.target.confirmPassword.value;
-        const avatar = e.target.avatar.value;
+        // const confirmPassword = e.target.confirmPassword.value;
         const bloodGroup = e.target.bloodGroup.value;
         const district = e.target.district.value;
         const upazila = e.target.upazila.value;
         const url = 'https://as2.ftcdn.net/v2/jpg/00/51/19/87/1000_F_51198797_gSMOe1hNvokAOvwWeJlON2GVVaAilmEI.jpg'
+        
 
 
+        // img
+
+        const form = new FormData(e.target)
+        const avatar = form.get("avatar")
+        
+        const data = new FormData()
+        data.append('avatar', avatar)
+
+        fetch("https://api.imgbb.com/1/upload?key=e054ffbffeb28fc199b69e426ab8669e", {
+            method: "POST",
+            body: data
+        })
+        .then(response =>response.json())
+        .then(data => console.log(data))
+        
 
         createUser(email, password)
         .then(result => {
@@ -85,7 +103,7 @@ const Register = () => {
     return (
         <div>
             <Container>
-                <form onSubmit={handleSignUp}>
+                <form onSubmit={handleSignUp} encType="multipart/form-data">
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
                     {/* name */}
                     <div>
@@ -157,6 +175,10 @@ const Register = () => {
                     Register
                 </button>
             </form>
+
+            <div>
+                <Register2></Register2>
+            </div>
             </Container>
             
             

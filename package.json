@@ -27,6 +27,7 @@
     "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-form-component": "^2.6.4",
+    "react-hook-form": "^7.48.2",
     "react-hot-toast": "^2.4.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.20.0",

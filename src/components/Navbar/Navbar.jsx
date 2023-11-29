@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
     const {user, logout} = useAuth()
+
+
     return (
         <Container>
             <div className="navbar bg-base-100">
@@ -44,9 +46,6 @@ const Navbar = () => {
                     <>
                     <button onClick={()=>logout()}  className="btn btn-outline">Logout</button>
                     <div className="pl-4">
-                    <div className="w-12 h-12 rounded-full  border border-red-500" >
-                    <p>{user.displayName}</p>
-                    </div>
                     </div>
                     </>:
                     <>

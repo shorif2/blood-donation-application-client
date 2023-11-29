@@ -112,7 +112,7 @@ import Funding from "../pages/Funding/Funding";
         {
           path: '/dashboard/update-profile/:id',
           element: <UpdateProfile></UpdateProfile>
-        }
+        },
       ]
     }
   ]);

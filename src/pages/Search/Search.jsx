@@ -1,5 +1,29 @@
+// import useDonar from "../../hooks/useDonar";
+
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAdmin from "../../hooks/useAdmin";
 
 const Search = () => {
+
+  const [isAdmin] = useAdmin();
+
+  const axiosSecure = useAxiosSecure();
+    const {data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async ()=>{
+            const res = await axiosSecure.get('/users')
+
+            return res.data
+
+        }
+    })
+
+
+
+  // const allUser = useDonar()
+  console.log(users);
+  console.log(isAdmin);
     return (
         // <!-- Hero -->
 <div className="relative overflow-hidden">
