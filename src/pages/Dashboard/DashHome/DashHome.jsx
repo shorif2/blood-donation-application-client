@@ -12,9 +12,6 @@ const DashHome = () => {
     console.log(admin);
     return (
         <div>
-            <h2 className="text-2xl font-semibold">
-                Dashboard
-            </h2>
             <Welcome name={user.displayName} ></Welcome>
 
             {/* Donar */}
