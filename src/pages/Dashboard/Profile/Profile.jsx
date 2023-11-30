@@ -10,7 +10,7 @@ import useUserData from "../../../hooks/useUserData";
 
 
 const Profile = () => {
-    const { user, loading } = useAuth()
+    const { user } = useAuth()
     const { email } = user;
     // const [myBio, setMyBio] = useState({})
     const axiosSecure = useAxiosSecure()

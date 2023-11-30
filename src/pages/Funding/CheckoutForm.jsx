@@ -96,14 +96,15 @@ const CheckoutForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-            <CardElement
+            <h2 className="text-2xl font-semibold leading-7 pb-16 text-gray-900">Card Information</h2>
+            <CardElement className="border bg-gray-200  py-3 px-3"
         options={{
           style: {
             base: {
+              border: 1,
               fontSize: '16px',
-              color: '#424770',
               '::placeholder': {
-                color: '#aab7c4',
+                color: 'gray',
               },
             },
             invalid: {
@@ -112,10 +113,10 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button className="btn btn-outline my-4" type="submit"
+      <button className="btn btn-outline  my-4" type="submit"
       disabled={!stripe || !clientSecret }
       >
-        Pay
+        Donate $10000
       </button>
       <p className="text-red-500">
         {error}

@@ -6,14 +6,18 @@ import Container from "../components/Shared/Container";
 import { HouseLine, HandHeart, FolderSimplePlus, User, CaretDown, Bell, Users, Notepad, HandsPraying } from "@phosphor-icons/react";
 import useAdmin from "../hooks/useAdmin";
 import useUserData from "../hooks/useUserData";
+// import useVolunteer from "../hooks/useVolunteer";
 
 const Dashboard = () => {
     const [admin] = useAdmin()
 
+    
+
     const [myBioData] = useUserData()
+    
     const { name, avatar,  role
     } = myBioData || '';
-
+ console.log(role);
     return (
         <Container>
             
@@ -38,8 +42,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Admin Pages */}
-                    
-                    {admin === true?
+                    {role === 'Volunteer' || admin === true?
                     <>
                     <div className="flex flex-col gap-6 pt-6 px-8">
                     <div className="flex gap-4">

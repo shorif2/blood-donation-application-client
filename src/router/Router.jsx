@@ -23,13 +23,16 @@ import BloodRequestPage from "../pages/BloodRequestPage/BloodRequestPage";
 // import DonationRequestDetails from "../pages/DonationRequestDetails/DonationRequestDetails";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
+import FundingPage from "../pages/Funding/FundingPage";
 import Funding from "../pages/Funding/Funding";
+import ErrorPage from "../pages/ErrorPage.jsx/ErrorPage";
 
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
@@ -65,6 +68,10 @@ import Funding from "../pages/Funding/Funding";
         },
         {
           path: '/donate',
+          element: <FundingPage></FundingPage>
+        },
+        {
+          path: '/donation-process',
           element: <Funding></Funding>
         },
       ]
