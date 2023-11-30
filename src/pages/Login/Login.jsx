@@ -5,8 +5,12 @@ import { useContext } from "react";
 // import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 
 const Login = () => {
+
+    const axiosPublic = useAxiosPublic()
 
     const { login } = useContext(AuthContext)
     const location = useLocation()
@@ -18,9 +22,21 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         login(email, password)
-            .then(() => {
+            .then((result) => {
+
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = {email}
                 toast.success('Login Successful !')
-                navigate(from, {replace: true});
+                
+                axiosPublic.post('/jwt', user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.success){
+                        navigate(from, {replace: true});
+                    }
+                })
+
             })
             .catch((error) => {
                 console.log(error.message);
@@ -29,17 +45,22 @@ const Login = () => {
 
     }
 
-    //     const googleSignUp =()=>{
-    //         googleSingIn()
-    //         .then(()=>{
-    //             toast.success('Login Successful')
-    //             navigate(location?.state ? location.state: '/' );
+    // previous code 
+    //     e.preventDefault()
+    //     const email = e.target.email.value;
+    //     const password = e.target.password.value;
+    //     login(email, password)
+    //         .then((result) => {
+    //             toast.success('Login Successful !')
+    //             navigate(from, {replace: true});
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.message);
+    //             toast.error(`${error.message}`)
+    //         })
 
-    //         })
-    //         .then((error)=>{
-    //             toast.error(`${error.massage}`)
-    //         })
-    //    }
+    // }
+
     return (
         <div>
 

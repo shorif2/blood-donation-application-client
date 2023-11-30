@@ -26,7 +26,7 @@ const Search = () => {
     // })
 
     useEffect( ()=>{
-      axiosSecure.get('/users')
+      axiosSecure.get('/users-jwt', {withCredentials: true})
       .then(res =>{
         setSearched(res.data)
       })
