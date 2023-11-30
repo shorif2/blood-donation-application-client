@@ -6,7 +6,8 @@ import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import useUserData from "../../../hooks/useUserData";
+// import useUserData from "../../../hooks/useUserData";
+import { useEffect } from "react";
 
 
 const Profile = () => {
@@ -15,27 +16,29 @@ const Profile = () => {
     // const [myBio, setMyBio] = useState({})
     const axiosSecure = useAxiosSecure()
 
-    const [myBioData] = useUserData()
+    // const [myBioData] = useUserData()
+
+    const [myBioData, setMyBioData] = useState({})
     
 
 
     const { _id, name, avatar, district, upazila, role, status, bloodGroup
     } = myBioData || '';
 
-    // useEffect(() => {
+    useEffect(() => {
 
 
-    //     axiosSecure.get(`/myInfo/${email}`)
-    //         .then(res => {
+        axiosSecure.get(`/myInfo/${email}`)
+            .then(res => {
 
-    //             setMyBio(res.data[0]);
+                setMyBioData(res.data[0]);
 
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
-    // }, [axiosSecure, email, loading])
+    }, [axiosSecure, email])
 
     const [date, setDate] = useState(new Date());
 

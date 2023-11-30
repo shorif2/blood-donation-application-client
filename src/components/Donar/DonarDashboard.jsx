@@ -39,7 +39,6 @@ const DonarDashboard = () => {
 			})
         const res2 = request.filter(item => item.status === temp)
 				setRequest(res2);
-        console.log(res2);
 	}
 
 
@@ -87,7 +86,16 @@ const DonarDashboard = () => {
             </div>
         </div>
         <div className="flex justify-center mb-6">
-        <Link to='/dashboard/my-donation-requests' className="btn btn-outline">See More</Link >
+        {
+			request.length === 0 ? <>
+			<div className="h-[200px] w-full flex justify-center items-center bg-white py-6">
+				<p className="text-2xl font-semibold text-center"> You have Not Create Donation <br /> Request Yet</p>
+			</div>
+			</>:
+			<>
+			<Link to='/dashboard/my-donation-requests' className="btn btn-outline">See More</Link >
+			</>
+		}
         </div>
         </div>
     );

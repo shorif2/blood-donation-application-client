@@ -50,7 +50,7 @@ const Login = () => {
     //     const email = e.target.email.value;
     //     const password = e.target.password.value;
     //     login(email, password)
-    //         .then((result) => {
+    //         .then(() => {
     //             toast.success('Login Successful !')
     //             navigate(from, {replace: true});
     //         })

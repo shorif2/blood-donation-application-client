@@ -8,7 +8,7 @@ const MyDonationTable = ({donationRequest}) => {
 
     const axiosSecure = useAxiosSecure()
 
-    const {_id, requesterName, recipientDistrict, recipientUpazila, donationDate, donationTime, status} = donationRequest
+    const {_id, requesterName, recipientDistrict, recipientUpazila, donationDate, donationTime, status, donarInfo} = donationRequest
 
 
     const handleDelete = (id)=>{
@@ -38,7 +38,12 @@ const MyDonationTable = ({donationRequest}) => {
                     <p >{donationTime} PM</p>
                     </td>
                     <td >
-                        <p>will added</p>
+                        <p>{donarInfo? <>
+                        <div>
+                        <p>{donarInfo?.donarName}</p>
+                        <p>{donarInfo?.donarEmail}</p>
+                        </div>
+                        </>: 'No One Donate yet'}</p>
                     </td>
                     <td >
                         <p>{status}</p>

@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
         <Container>
             
-            <div className="flex">
+            <div className="flex max-h-screen">
 
 
                 {/* Sidebar */}
@@ -92,7 +92,7 @@ const Dashboard = () => {
 
                 {/* Outlet */}
 
-                <div className="bg-base-200 w-4/5 ">
+                <div className="bg-base-200 w-4/5">
                 <div className="bg-white flex justify-between items-center mb-6">
                 <div className="flex">
                 </div>
@@ -111,7 +111,7 @@ const Dashboard = () => {
                     <CaretDown size={24} />
                 </div>
             </div>
-                    <div className="bg-base-200 px-6">
+                    <div className="bg-base-200 px-6 h-full">
                     <Outlet></Outlet>
                     </div>
                 </div>

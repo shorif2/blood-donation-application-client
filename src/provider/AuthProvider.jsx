@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import axios from "axios";
+// import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // if user exists then issue a token
             if (currentUser) {
-                axios.post('/jwt', loggedUser, { withCredentials: true })
+                axiosPublic.post('/jwt', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log('token response', res.data);
                     })

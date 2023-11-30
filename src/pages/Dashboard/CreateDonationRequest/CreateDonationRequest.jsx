@@ -46,7 +46,8 @@ const CreateDonationRequest = () => {
         axiosPublic.post('/donation-requests', donationRequest)
                 .then(res =>{
                     if(res.data.insertedId){
-                        console.log(res);
+                        form.reset()
+
                         toast.success('Donation Requests Created Successfully !!')
                     }
                 })
@@ -54,14 +55,14 @@ const CreateDonationRequest = () => {
 
     }
     return (
-        <div>
+        <div className="w-full h-full">
             <h2 className="text-3xl font-semibold">
             Create Donation Request 
             </h2>
 
             {/* form */}
 
-            <form onSubmit={handleSubmit} className="px-6  py-6 rounded bg-white mx-auto mt-6">
+            <form onSubmit={handleSubmit} className="px-6 border w-full h-full py-6 rounded bg-white mx-auto mt-6">
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <label  className="block mb-2 text-sm font-medium text-gray-900 ">Requester Name</label>

@@ -68,11 +68,11 @@ const Register2 = () => {
         
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className=" py-10" onSubmit={handleSubmit(onSubmit)}>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6 ">
                 {/* category */}
-                <div className="form-control w-full my-3">
+                <div className="form-control  my-3">
                     <label className="label">
                         <span className="label-text">Full Name</span>
                     </label>
@@ -175,9 +175,9 @@ const Register2 = () => {
                 <input {...register('avatar', { required: true })} type="file" className="file-input w-full max-w-xs" />
             </div>
 
-            <button className="btn">
-                Register
-            </button>
+        <button className="btn">
+            Register
+        </button>
         </form>
     );
 };
