@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../config/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -13,28 +14,61 @@ const AuthProvider = ({ children }) => {
     const axiosPublic = useAxiosPublic();
 
 
+    // useEffect(() => {
+    //     // Observer 
+    //     const observerRequest = onAuthStateChanged(auth, (newUser) => {
+    //         setUser(newUser)
+    //         // get token and store client
+    //         // if(newUser){
+                
+    //         //     const userInfo = {email: newUser.email}
+    //         //     axiosPublic.post('jwt', userInfo)
+    //         //     .then(res=>{
+    //         //         if(res.data.token){
+    //         //             localStorage.setItem('access-token', res.data.token);
+    //         //         }
+    //         //     })
+    //         // }
+    //         // else{
+    //         //     // remove token 
+    //         //     localStorage.removeItem('access-token')
+    //         // }
+    //         setLoading(false)
+    //     })
+    //     return () => observerRequest()
+    // }, [axiosPublic])
+
+    // extra 
     useEffect(() => {
-        // Observer 
-        const observerRequest = onAuthStateChanged(auth, (newUser) => {
-            setUser(newUser)
-            if(newUser){
-                // get token and store client
-                const userInfo = {email: newUser.email}
-                axiosPublic.post('jwt', userInfo)
-                .then(res=>{
-                    if(res.data.token){
-                        localStorage.setItem('access-token', res.data.token);
-                    }
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
+            setUser(currentUser);
+            console.log('current user', currentUser);
+            setLoading(false);
+            // if user exists then issue a token
+            if (currentUser) {
+                axios.post('/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
+            }
+            else {
+                axiosPublic.post('/logout', loggedUser, {
+                    withCredentials: true
                 })
+                    .then(res => {
+                        console.log(res.data);
+                    })
             }
-            else{
-                // remove token 
-                localStorage.removeItem('access-token')
-            }
-            setLoading(false)
-        })
-        return () => observerRequest()
-    }, [axiosPublic])
+        });
+        return () => {
+            return unsubscribe();
+        }
+    }, [axiosPublic, user?.email])
+
+
+
 
     // Create User
     const createUser = (email, password) => {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../Shared/Container";
 import useAuth from "../../hooks/useAuth";
 
@@ -6,6 +6,16 @@ import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
     const {user, logout} = useAuth()
 
+
+
+
+    const handleLogout = () => {
+        // Assuming 'token' is the name of your cookie
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    
+        // Log out logic
+        logout();
+    }
 
     return (
         <Container>
@@ -27,7 +37,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal gap-4">
-                <Link to='/'>Home</Link>
+                <NavLink to='/'>Home</NavLink>
                 <Link to='/search'>Search</Link>
                 <Link to='/blood-donation-request'>Blood Requests</Link>
                     
@@ -44,7 +54,7 @@ const Navbar = () => {
                 {
                     user?
                     <>
-                    <button onClick={()=>logout()}  className="btn btn-outline">Logout</button>
+                    <button onClick={handleLogout}  className="btn btn-outline">Logout</button>
                     <div className="pl-4">
                     </div>
                     </>:

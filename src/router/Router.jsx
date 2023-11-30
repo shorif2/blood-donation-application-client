@@ -56,7 +56,7 @@ import ErrorPage from "../pages/ErrorPage.jsx/ErrorPage";
         },
         {
           path: '/blood-donation-details/:id',
-          element: <BloodDonationDetails></BloodDonationDetails>
+          element: <PrivetRouter><BloodDonationDetails></BloodDonationDetails></PrivetRouter>
         },
         {
           path: '/search',
@@ -82,7 +82,7 @@ import ErrorPage from "../pages/ErrorPage.jsx/ErrorPage";
       children:[
         {
           path:'/dashboard',
-          element: <DashHome></DashHome>
+          element: <PrivetRouter><DashHome></DashHome></PrivetRouter>
         },
         {
         path: '/dashboard/my-donation-requests',
