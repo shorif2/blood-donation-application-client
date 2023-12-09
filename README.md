@@ -14,3 +14,12 @@ this is blood management website where anyone can create request for blood and f
 - Funding system
 - Blood donar search 
 - Secure API
+
+## Technology
+- HTML
+- CSS
+- Tailwind
+- JS
+- React
+- Firebase
+- MongoDB
