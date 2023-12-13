@@ -12,6 +12,7 @@ this is blood management website where anyone can create request for blood and f
 - Admin dashboard
 - Blood Donation request
 - Funding system
+- Create Blog Pose using TypeScript
 - Blood donar search 
 - Secure API
 
@@ -23,3 +24,4 @@ this is blood management website where anyone can create request for blood and f
 - React
 - Firebase
 - MongoDB
+- TypeScript
